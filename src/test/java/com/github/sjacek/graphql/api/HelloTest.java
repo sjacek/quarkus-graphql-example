@@ -10,6 +10,7 @@ import static org.hamcrest.Matchers.nullValue;
 
 @QuarkusTest
 public class HelloTest {
+
     @Test
     void testHello() {
         RestAssured.given()
