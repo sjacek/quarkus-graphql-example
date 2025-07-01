@@ -2,6 +2,7 @@ package com.github.sjacek.graphql.api;
 
 import com.github.sjacek.graphql.dto.Author;
 import com.github.sjacek.graphql.dto.Book;
+import com.github.sjacek.graphql.dto.BookInput;
 import com.github.sjacek.graphql.service.AuthorService;
 import com.github.sjacek.graphql.service.BookService;
 import org.eclipse.microprofile.graphql.Description;
@@ -40,15 +41,26 @@ public class BookResource {
         return book;
     }
 
+//    @Mutation
+//    @Description("Add a new book")
+//    public Book addBook(@Name("title") String title, @Name("pageCount") int pageCount, @Name("authorId") String authorId) {
+//        Author author = this.authorService.getById(authorId);
+//        if (author == null) {
+//            throw new IllegalArgumentException("Author with id " + authorId + " not found");
+//        }
+//        return this.bookService.addBook(title, pageCount, authorId);
+//    }
+
     @Mutation
     @Description("Add a new book")
-    public Book addBook(@Name("title") String title, @Name("pageCount") int pageCount, @Name("authorId") String authorId) {
-        Author author = this.authorService.getById(authorId);
+    public Book addBook(BookInput input) {
+        Author author = this.authorService.getById(input.getAuthorId());
         if (author == null) {
-            throw new IllegalArgumentException("Author with id " + authorId + " not found");
+            throw new IllegalArgumentException("Author with id " + input.getAuthorId() + " not found");
         }
-        return this.bookService.addBook(title, pageCount, authorId);
+        return this.bookService.addBook(input.getTitle(), input.getPageCount(), input.getAuthorId());
     }
+
 
 //    public Author author(@Source Book book) {
 //        return this.authorService.getById(book.authorId());
