@@ -65,5 +65,31 @@ public class BookResourceTest {
 
 	@Test
 	void testAddBook() {
+		RestAssured.given()
+				.headers("Content-Type", JSON, "OK", JSON)
+				.when()
+				.contentType("application/json")
+				.body(new String("""
+						{
+							"query": "mutation {
+							    addBook(
+										title: \\"New Book\\",
+										pageCount: 300,
+										authorId: \\"author-1\\"
+								) {
+							        id
+							        title
+									authorId
+									pageCount
+								}
+							}"
+						}
+						"""))
+				.post("/graphql")
+				.then().log().ifValidationFails()
+				.body("data.addBook.title", is("New Book"))
+				.body("data.addBook.pageCount", is(300))
+				.body("data.addBook.authorId", is("author-1"))
+				.body("errors", nullValue());
 	}
 }

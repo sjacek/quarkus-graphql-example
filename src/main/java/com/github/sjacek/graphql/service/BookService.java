@@ -27,12 +27,13 @@ public class BookService {
 
     public Book addBook(String title, int pageCount, String authorId) {
         Book book = Book.builder()
+                .id(Book.nextId())
                 .title(title)
                 .pageCount(pageCount)
                 .authorId(authorId)
                 .build();
         Book.books.add(book);
-        // In a real application, you would save the book to a database here
+
         return book;
     }
 }

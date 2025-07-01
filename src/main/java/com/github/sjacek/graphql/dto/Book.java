@@ -3,6 +3,7 @@ package com.github.sjacek.graphql.dto;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public record Book(
 ) {
 
     @Getter
-    public static final List<Book> books = Arrays.asList(
+    public static final List<Book> books = new ArrayList<Book>(Arrays.asList(
             new Book("book-1", "Effective Java", 416, "author-1"),
             new Book("book-2", "Hitchhiker's Guide to the Galaxy", 208, "author-2"),
             new Book("book-3", "Down Under", 436, "author-3"),
@@ -52,7 +53,7 @@ public record Book(
             new Book("book-34", "Java: The Complete Reference, Sixteenth Edition", 1248, "author-1"),
             new Book("book-35", "The Hitchhiker's Guide to the Galaxy: The Complete Collection: The Illustrated Edition", 320, "author-2"),
             new Book("book-36", "A Walk in the Woods: Rediscovering America on the Appalachian Trail: Special Illustrated Edition", 304, "author-3")
-    );
+    ));
 
     public static String nextId() {
         return "book-" + (books.size() + 1);
