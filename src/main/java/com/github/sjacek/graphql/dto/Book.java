@@ -13,7 +13,7 @@ public record Book(
         String title,
         int pageCount,
         String authorId
-) {
+) implements SearchResult {
 
     @Getter
     public static final List<Book> books = new ArrayList<Book>(Arrays.asList(

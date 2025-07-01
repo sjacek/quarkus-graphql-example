@@ -9,7 +9,7 @@ public record Author(
         String id,
         String firstName,
         String lastName
-) {
+) implements SearchResult {
 
     @Getter
     public static final List<Author> authors = Arrays.asList(
