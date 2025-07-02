@@ -72,7 +72,7 @@ public class BookResourceTest {
 				.body(new String("""
 						{
 							"query": "mutation {
-							    addBook(input: {
+							    addBook(input:{
 										title: \\"New Book\\",
 										pageCount: 300,
 										authorId: \\"author-1\\"

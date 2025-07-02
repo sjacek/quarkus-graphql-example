@@ -62,7 +62,7 @@ public class BookResource {
     }
 
 
-//    public Author author(@Source Book book) {
-//        return this.authorService.getById(book.authorId());
-//    }
+    public Author author(@Source Book book) {
+        return this.authorService.getById(book.authorId());
+    }
 }
